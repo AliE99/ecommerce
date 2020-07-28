@@ -12,9 +12,17 @@ class Customer(models.Model):
 
 
 class Product(models.Model):
+    CATEGORY_CHOICES = (
+        ("electronic-devices", "electronic-devices"),
+        ("apparel", "apparel"),
+        ("personal-appliance", "personal-appliance"),
+        ("home", "home"),
+        ("book-and-media", "book-and-media"),
+        ("others", "others"),
+    )
     name = models.CharField(max_length=150, null=True)
     price = models.FloatField()
-    digital = models.BooleanField(default=False, null=True, blank=True)
+    category = models.CharField(max_length=20, choices=CATEGORY_CHOICES, default='others')
     image = models.ImageField(null=True, blank=True)
 
     def __str__(self):
