@@ -1,6 +1,11 @@
 {% extends 'store/main.html' %}
 {% load static %}
 {% block content %}
+<div class="container">
+    <div class="cart-row">
+        <a class="btn btn-primary" href="{% url 'create_product' %}" role="button">Create Product</a>
+    </div>
+</div>
 <div class="row">
     {% for p in products %}
     <div class="col-lg-4">
@@ -11,6 +16,7 @@
                     class="btn btn-outline-secondary add-btn update-cart">Add to Cart
             </button>
             <a class="btn btn-outline-success" href="#">View</a>
+            <a class="btn btn-outline-primary" href="#">Update</a>
             <h4 style="display: inline-block; float: right"><strong>{{ p.price|floatformat:2 }}</strong></h4>
         </div>
     </div>

@@ -1,9 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 from .models import *
-
-
-# Create your views here.
+from .forms import ProductForm
 
 
 def store(request):
@@ -36,3 +34,15 @@ def checkout(request):
 
     context = {'items': items, 'order': order}
     return render(request, 'store/checkout.html', context)
+
+
+def create_product(request):
+    form = ProductForm
+    context = {'form': form}
+    if request.method == 'POST':
+        form = ProductForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+
+    return render(request, 'store/create_product.html', context)
