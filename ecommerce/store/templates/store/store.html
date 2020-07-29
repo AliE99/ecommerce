@@ -12,11 +12,12 @@
         <img class="thumbnail" src="{{ p.imageURL   }}">
         <div class="box-element product">
             <h6><strong>{{ p.name }}</strong></h6>
-            <button data-product="{{p.id}}" data-action="add"
-                    class="btn btn-outline-secondary add-btn update-cart">Add to Cart
-            </button>
+<!--            <button data-product="{{p.id}}" data-action="add"-->
+<!--                    class="btn btn-outline-secondary add-btn update-cart">Add to Cart-->
+<!--            </button>-->
             <a class="btn btn-outline-success" href="#">View</a>
-            <a class="btn btn-outline-primary" href="#">Update</a>
+            <a class="btn btn-outline-primary" href="{% url 'update_product' p.id%}">Update</a>
+            <a class="btn btn-outline-danger" href="{% url 'delete_product' p.id%}">Remove</a>
             <h4 style="display: inline-block; float: right"><strong>{{ p.price|floatformat:2 }}</strong></h4>
         </div>
     </div>

@@ -37,12 +37,32 @@ def checkout(request):
 
 
 def create_product(request):
-    form = ProductForm
+    print(request.FILES)
+    form = ProductForm()
     context = {'form': form}
     if request.method == 'POST':
-        form = ProductForm(request.POST)
+        form = ProductForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return redirect('/')
 
-    return render(request, 'store/create_product.html', context)
+    return render(request, 'store/product_form.html', context)
+
+
+def update_product(request, pk):
+    product = Product.objects.get(id=pk)
+    form = ProductForm(instance=product)
+    context = {'form': form}
+    if request.method == 'POST':
+        form = ProductForm(request.POST, request.FILES, instance=product)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+
+    return render(request, 'store/product_form.html', context)
+
+
+def delete_product(request, pk):
+    product = Product.objects.get(id=pk)
+    product.delete()
+    return redirect('/')
