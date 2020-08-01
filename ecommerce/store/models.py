@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from ecommerce.settings import MEDIA_ROOT
 
 
 class Customer(models.Model):
@@ -23,7 +24,7 @@ class Product(models.Model):
     name = models.CharField(max_length=150, null=True)
     price = models.FloatField()
     category = models.CharField(max_length=20, choices=CATEGORY_CHOICES, default='others')
-    image = models.ImageField(null=True, blank=True)
+    image = models.ImageField(null=True, blank=True, upload_to=MEDIA_ROOT)
 
     def __str__(self):
         return self.name
