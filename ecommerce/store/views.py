@@ -66,3 +66,9 @@ def delete_product(request, pk):
     product = Product.objects.get(id=pk)
     product.delete()
     return redirect('/')
+
+
+def view_product(request, pk):
+    product = Product.objects.get(id=pk)
+    context = {'product': product}
+    return render(request, 'store/view_product.html', context)
